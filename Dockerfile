@@ -1,9 +1,10 @@
 FROM debian:buster-slim
 
-ARG NUSTER_SRC_GIT=https://github.com/jiangwenyuan/nuster.git
+ARG NUSTER_SRC_GIT=https://github.com/HugoS99/nuster.git
 ARG NUSTER_SRC_DIR=/tmp/nuster
+ARG USE_THREAD=1
 
-ADD https://api.github.com/repos/jiangwenyuan/nuster/git/refs/heads/master tmp.json
+ADD https://api.github.com/repos/HugoS99/nuster/git/refs/heads/master tmp.json
 
 RUN set -x \
         && buildDeps=' \
@@ -33,6 +34,7 @@ RUN set -x \
         \
         && makeOpts=' \
                 TARGET=linux-glibc \
+                USE_THREAD=1 \
                 USE_LUA=1 \
                 LUA_INC=/usr/include/lua5.3 \
                 USE_OPENSSL=1 \
